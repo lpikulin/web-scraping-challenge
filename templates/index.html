@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+
+
+
+
+<body>
+  <div class="container-small">
+    <div class="jumbotron">
+      <center>
+      <h1 class="display-4">The Red Planet: Mars</h1>
+      <p class="lead"> Data scraped from NASA, Space Facts, and USGS Astrogeology.</p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape_mars" role="button">Get Data!</a></center></p>
+    </div>
+    <div class="row" id="mars-facts">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+       <img src="{{ planet.feat_image }}" alt="featured image" style='height: 100%; width: 100%; object-fit: contain'>
+      </div>
+      <div class="col-md-5">
+        <center><h3>Mars Facts</h3></center>
+        {{planet.facts_table|safe}}
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h2>Recent news</h2>
+      <h3>{{ planet.news_title }}</h3>
+      <p>About the story: {{ planet.news_p }}</p>
+    </div>
+    <div class="col-md-1"></div>
+  </div>  
+  <div class="row" id="hemi-image">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h2>Hemispheres</h2>
+    <p>
+    You can download images of each of the four hemispheres of Mars here:<br>
+      <ul>
+      {% for images in planet.hemi_images %}
+        <li><a href="{{images.img_url|safe}}">{{images.title}}</li>
+      {% endfor %}
+    </ul>
+  </p>
+  </div>
+   <div class="col-md-1"></div>
+  </div>
+</div>
+</body>
+
+</html>
